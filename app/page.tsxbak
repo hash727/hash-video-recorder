@@ -1,0 +1,575 @@
+import { Check, ChevronRight, Video, Share2, Sparkles } from "lucide-react";
+
+export default function Index() {
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Navbar */}
+      <nav className="bg-white border-b border-black">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-[20px]">
+          <div className="flex items-center justify-between h-16 md:h-20">
+            <div className="flex items-center">
+              <Logo />
+            </div>
+            <div className="flex items-center gap-2">
+              <button className="hidden md:flex px-5 py-1 border border-black bg-black text-white text-base font-normal hover:bg-gray-900 transition-colors">
+                Button
+              </button>
+              <button className="md:hidden p-3">
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M6 18L18 6M6 6l12 12" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section 
+        className="relative min-h-[500px] md:min-h-[812px] bg-cover bg-center flex items-center"
+        style={{
+          backgroundImage: "linear-gradient(0deg, rgba(0, 0, 0, 0.40) 0%, rgba(0, 0, 0, 0.40) 100%), url('https://api.builder.io/api/v1/image/assets/TEMP/e9b0783cb54d4850897fe110bd4aa466228048bb?width=1920')",
+        }}
+      >
+        <div className="max-w-[1280px] mx-auto px-5 md:px-[20px] w-full py-16">
+          <div className="max-w-3xl">
+            <h1 className="text-white text-[40px] md:text-5xl lg:text-6xl font-bold leading-[1.2] mb-6">
+              Record and share videos instantly
+            </h1>
+            <div className="flex flex-wrap gap-4 mb-12 md:mb-16">
+              <button className="px-6 py-3 border border-white bg-white text-black text-base font-normal hover:bg-gray-100 transition-colors">
+                Start
+              </button>
+              <button className="px-6 py-3 border border-white text-white text-base font-normal hover:bg-white/10 transition-colors">
+                Learn
+              </button>
+            </div>
+            <div className="max-w-2xl">
+              <p className="text-white text-base leading-[1.5]">
+                Send personalized video messages to your prospects in seconds. Let AI handle the heavy lifting while you focus on what matters most.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-16 md:py-20 bg-white">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-[20px]">
+          <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+            <div className="text-black text-base font-semibold mb-3">Capabilities</div>
+            <h2 className="text-black text-4xl md:text-5xl font-bold leading-[1.2] mb-5">
+              Three tools that change the game
+            </h2>
+            <p className="text-black text-base leading-[1.5]">
+              Everything you need to connect with prospects through video. No complicated setup. No learning curve. Just record, share, and watch engagement rise.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8">
+            <div className="text-center">
+              <div className="flex justify-center mb-5">
+                <Video className="w-12 h-12" />
+              </div>
+              <h3 className="text-black text-2xl font-bold leading-[1.3] mb-5">Record in one take</h3>
+              <p className="text-black text-base leading-[1.5]">
+                Capture your message without retakes or editing delays.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="flex justify-center mb-5">
+                <Share2 className="w-12 h-12" />
+              </div>
+              <h3 className="text-black text-2xl font-bold leading-[1.3] mb-5">Share with one click</h3>
+              <p className="text-black text-base leading-[1.5]">
+                Send videos directly to prospects through their preferred channels.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="flex justify-center mb-5">
+                <Sparkles className="w-12 h-12" />
+              </div>
+              <h3 className="text-black text-2xl font-bold leading-[1.3] mb-5">AI makes it better</h3>
+              <p className="text-black text-base leading-[1.5]">
+                Automatic enhancements ensure every video looks and sounds professional.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-6">
+            <button className="px-6 py-3 border border-black text-black text-base font-normal hover:bg-black hover:text-white transition-colors">
+              Explore
+            </button>
+            <button className="flex items-center gap-2 text-black text-base font-normal hover:underline">
+              Arrow
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section className="py-16 md:py-20 bg-white">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-[20px]">
+          <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+            <div className="text-black text-base font-semibold mb-3">Process</div>
+            <h2 className="text-black text-4xl md:text-5xl font-bold leading-[1.2] mb-5">
+              Three simple steps
+            </h2>
+            <p className="text-black text-base leading-[1.5]">
+              From recording to delivery happens faster than you think.
+            </p>
+          </div>
+
+          <div className="space-y-8">
+            {/* Step 1 */}
+            <div 
+              className="p-6 md:p-8 bg-cover bg-center min-h-[300px] md:min-h-[400px] flex flex-col justify-between"
+              style={{
+                backgroundImage: "linear-gradient(0deg, rgba(0, 0, 0, 0.40) 0%, rgba(0, 0, 0, 0.40) 100%), url('https://api.builder.io/api/v1/image/assets/TEMP/13e3924cfd688cf43f9579b5bcbcd3ce8770c13b?width=1280')",
+              }}
+            >
+              <div>
+                <div className="text-white text-base font-semibold mb-2">One</div>
+                <h3 className="text-white text-3xl md:text-4xl font-bold leading-[1.2] mb-5">
+                  Hit record and speak naturally
+                </h3>
+                <p className="text-white text-base leading-[1.5] mb-6">
+                  No scripts required. Just talk to your prospect like you mean it.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-6">
+                <button className="px-6 py-3 border border-white text-white text-base font-normal hover:bg-white/10 transition-colors">
+                  Record
+                </button>
+                <button className="flex items-center gap-2 text-white text-base font-normal hover:underline">
+                  Play
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div 
+              className="p-6 md:p-8 bg-cover bg-center min-h-[250px] flex flex-col justify-between"
+              style={{
+                backgroundImage: "linear-gradient(0deg, rgba(0, 0, 0, 0.40) 0%, rgba(0, 0, 0, 0.40) 100%), url('https://api.builder.io/api/v1/image/assets/TEMP/9e11cdef2c556155ef219796b7b7911e753c2b78?width=1280')",
+              }}
+            >
+              <div>
+                <div className="flex items-center justify-center w-12 h-12 mb-3">
+                  <svg viewBox="0 0 48 48" fill="white" className="w-12 h-12">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M41.46 14.24L41.18 13.74C40.8188 13.1354 40.3094 12.6329 39.7 12.28L26.28 4.54C25.6724 4.1875 24.9826 4.00124 24.28 4H23.7C22.9974 4.00124 22.3076 4.1875 21.7 4.54L8.28 12.3C7.67394 12.6505 7.17052 13.1539 6.82 13.76L6.54 14.26C6.1875 14.8677 6.00124 15.5575 6 16.26V31.76C6.00124 32.4626 6.1875 33.1524 6.54 33.76L6.82 34.26C7.17958 34.859 7.68098 35.3604 8.28 35.72L21.72 43.46C22.3246 43.8198 23.0164 44.0066 23.72 44H24.28C24.9826 43.9988 25.6724 43.8126 26.28 43.46L39.7 35.7C40.312 35.3574 40.8174 34.852 41.16 34.24L41.46 33.74C41.8082 33.1306 41.9942 32.442 42 31.74V16.24C41.9988 15.5375 41.8126 14.8477 41.46 14.24ZM23.7 8H24.28L36 14.76L24 21.68L12 14.76L23.7 8ZM26 39L37.7 32.24L38 31.74V18.22L26 25.16V39Z"/>
+                  </svg>
+                </div>
+                <h3 className="text-white text-xl font-bold leading-[1.4] mb-2">
+                  AI enhances while you wait
+                </h3>
+                <p className="text-white text-base leading-[1.5] mb-6">
+                  Automatic polish applied instantly to your video.
+                </p>
+              </div>
+              <button className="flex items-center gap-2 text-white text-base font-normal hover:underline self-start">
+                Play
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Step 3 */}
+            <div 
+              className="p-6 md:p-8 bg-cover bg-center min-h-[250px] flex flex-col justify-between"
+              style={{
+                backgroundImage: "linear-gradient(0deg, rgba(0, 0, 0, 0.40) 0%, rgba(0, 0, 0, 0.40) 100%), url('https://api.builder.io/api/v1/image/assets/TEMP/3f775da2416c47e59956a806ca8c163443d78468?width=1280')",
+              }}
+            >
+              <div>
+                <div className="flex items-center justify-center w-12 h-12 mb-3">
+                  <svg viewBox="0 0 48 48" fill="white" className="w-12 h-12">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M41.46 14.24L41.18 13.74C40.8188 13.1354 40.3094 12.6329 39.7 12.28L26.28 4.54C25.6724 4.1875 24.9826 4.00124 24.28 4H23.7C22.9974 4.00124 22.3076 4.1875 21.7 4.54L8.28 12.3C7.67394 12.6505 7.17052 13.1539 6.82 13.76L6.54 14.26C6.1875 14.8677 6.00124 15.5575 6 16.26V31.76C6.00124 32.4626 6.1875 33.1524 6.54 33.76L6.82 34.26C7.17958 34.859 7.68098 35.3604 8.28 35.72L21.72 43.46C22.3246 43.8198 23.0164 44.0066 23.72 44H24.28C24.9826 43.9988 25.6724 43.8126 26.28 43.46L39.7 35.7C40.312 35.3574 40.8174 34.852 41.16 34.24L41.46 33.74C41.8082 33.1306 41.9942 32.442 42 31.74V16.24C41.9988 15.5375 41.8126 14.8477 41.46 14.24ZM23.7 8H24.28L36 14.76L24 21.68L12 14.76L23.7 8ZM26 39L37.7 32.24L38 31.74V18.22L26 25.16V39Z"/>
+                  </svg>
+                </div>
+                <h3 className="text-white text-xl md:text-2xl font-bold leading-[1.4] mb-2">
+                  Share and track results
+                </h3>
+                <p className="text-white text-base leading-[1.5] mb-6">
+                  Send it out and see who watches and when.
+                </p>
+              </div>
+              <button className="flex items-center gap-2 text-white text-base font-normal hover:underline self-start">
+                Play
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-16 md:py-20 bg-white">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-[20px]">
+          <div className="mb-12">
+            <h2 className="text-black text-4xl md:text-5xl font-bold leading-[1.2] mb-5">Real results</h2>
+            <p className="text-black text-base md:text-lg leading-[1.5]">
+              What users are saying about Video Prospect AI Share
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                quote: "This changed how I reach out to clients. Response rates jumped immediately.",
+                name: "Sarah Mitchell",
+                title: "Sales director, TechFlow"
+              },
+              {
+                quote: "The AI features save me hours every week. Videos look professional without the effort.",
+                name: "James Rodriguez",
+                title: "Founder, Growth Labs"
+              },
+              {
+                quote: "Simple, fast, and it actually works. Our team adopted it in a day.",
+                name: "Emma Chen",
+                title: "Marketing manager, Velocity"
+              }
+            ].map((testimonial, idx) => (
+              <div key={idx} className="p-6 border border-black bg-white">
+                <div className="mb-8">
+                  <div className="w-[120px] h-12 bg-black mb-8"></div>
+                  <p className="text-black text-base leading-[1.5] mb-6">"{testimonial.quote}"</p>
+                  <div className="flex items-center gap-5">
+                    <div className="w-12 h-12 rounded-full bg-gray-300"></div>
+                    <div>
+                      <div className="text-black text-base font-semibold">{testimonial.name}</div>
+                      <div className="text-black text-base">{testimonial.title}</div>
+                    </div>
+                  </div>
+                </div>
+                <button className="flex items-center gap-2 text-black text-base hover:underline">
+                  Read case study
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section className="py-16 md:py-20 bg-white">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-[20px]">
+          <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+            <div className="text-black text-base font-semibold mb-3">Plans</div>
+            <h2 className="text-black text-4xl md:text-5xl font-bold leading-[1.2] mb-5">
+              Pick your plan
+            </h2>
+            <p className="text-black text-base md:text-lg leading-[1.5]">
+              Start recording and sharing videos today
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Starter plan",
+                price: "$19",
+                period: "or $199 yearly",
+                features: [
+                  "Record unlimited videos",
+                  "Share with prospects instantly",
+                  "Basic AI enhancements included"
+                ]
+              },
+              {
+                name: "Professional plan",
+                price: "$29",
+                period: "or $299 yearly",
+                features: [
+                  "Everything in starter plan",
+                  "Advanced AI video polish",
+                  "Detailed engagement tracking",
+                  "Priority email support"
+                ]
+              },
+              {
+                name: "Enterprise plan",
+                price: "$49",
+                period: "or $499 yearly",
+                features: [
+                  "Everything in professional plan",
+                  "Team collaboration features",
+                  "Custom AI video templates",
+                  "API access for integrations",
+                  "Dedicated account manager"
+                ]
+              }
+            ].map((plan, idx) => (
+              <div key={idx} className="p-8 border border-black bg-white flex flex-col">
+                <div className="mb-8">
+                  <h3 className="text-black text-lg md:text-xl font-bold leading-[1.4] text-center mb-2">
+                    {plan.name}
+                  </h3>
+                  <div className="text-black text-[40px] md:text-[56px] font-bold leading-[1.2] text-center mb-2">
+                    {plan.price}
+                  </div>
+                  <p className="text-black text-base text-center mb-8">{plan.period}</p>
+                  
+                  <div className="space-y-4 mb-8">
+                    {plan.features.map((feature, fidx) => (
+                      <div key={fidx} className="flex items-start gap-4">
+                        <Check className="w-6 h-6 flex-shrink-0 mt-0.5" />
+                        <span className="text-black text-base leading-[1.5]">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <button className="w-full px-6 py-3 border border-black bg-black text-white text-base font-normal hover:bg-gray-900 transition-colors mt-auto">
+                  Get started
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 md:py-20 bg-white">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-[20px]">
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className="text-black text-4xl md:text-5xl font-bold leading-[1.2] mb-5">
+              Stop waiting, start connecting
+            </h2>
+            <p className="text-black text-base md:text-lg leading-[1.5] mb-8">
+              Your first video is just seconds away. No credit card needed to begin.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <button className="px-6 py-3 border border-black bg-black text-white text-base font-normal hover:bg-gray-900 transition-colors">
+                Record
+              </button>
+              <button className="px-6 py-3 border border-black text-black text-base font-normal hover:bg-black hover:text-white transition-colors">
+                Learn more
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 md:py-20 bg-white">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-[20px]">
+          <div className="mb-12 md:mb-16">
+            <h2 className="text-black text-4xl md:text-5xl font-bold leading-[1.2] mb-5">Questions</h2>
+            <p className="text-black text-base md:text-lg leading-[1.5]">
+              Find answers about recording, sharing, and how AI makes your videos better
+            </p>
+          </div>
+
+          <div className="space-y-12 md:space-y-16">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+              {[
+                {
+                  q: "How long does recording take?",
+                  a: "Record in seconds. Hit the button, speak your message, and you're done. No editing. No waiting. The AI handles the rest while you move on to the next prospect."
+                },
+                {
+                  q: "Can I edit videos after recording?",
+                  a: "The AI applies enhancements automatically. If you need changes, re-record and let the system polish it again. Simple as that."
+                },
+                {
+                  q: "Which platforms can I share to?",
+                  a: "Send directly through email, text, or your favorite messaging app. One click and your prospect gets the video. They watch it on any device."
+                }
+              ].map((faq, idx) => (
+                <div key={idx}>
+                  <h3 className="text-black text-lg font-bold leading-[1.5] mb-4">{faq.q}</h3>
+                  <p className="text-black text-base leading-[1.5]">{faq.a}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+              {[
+                {
+                  q: "Does the AI improve every video?",
+                  a: "Yes. Audio clarity, lighting adjustments, and background enhancement happen automatically. Every video comes out looking professional without extra effort from you."
+                },
+                {
+                  q: "Can I track who watches my videos?",
+                  a: "See exactly who opened your video and when they watched it. Track engagement in real time and follow up when the moment is right."
+                },
+                {
+                  q: "What if I have technical issues?",
+                  a: "Our support team is ready to help. Reach out and we'll get you back to recording fast. Professional and personal plans include priority support."
+                }
+              ].map((faq, idx) => (
+                <div key={idx}>
+                  <h3 className="text-black text-lg font-bold leading-[1.5] mb-4">{faq.q}</h3>
+                  <p className="text-black text-base leading-[1.5]">{faq.a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-16 md:mt-20 max-w-2xl">
+            <h3 className="text-black text-3xl md:text-4xl font-bold leading-[1.3] mb-4">Need more help?</h3>
+            <p className="text-black text-base md:text-lg leading-[1.5] mb-6">
+              Get in touch with our team for anything else
+            </p>
+            <button className="px-6 py-3 border border-black text-black text-base font-normal hover:bg-black hover:text-white transition-colors">
+              Contact
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter Section */}
+      <section className="py-16 md:py-20 bg-white">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-[20px]">
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className="text-black text-4xl md:text-5xl font-bold leading-[1.2] mb-5">
+              Stay sharp with video tips
+            </h2>
+            <p className="text-black text-base md:text-lg leading-[1.5] mb-8">
+              Get strategies and insights delivered to your inbox every week
+            </p>
+            <div className="max-w-lg mx-auto">
+              <div className="flex flex-col sm:flex-row gap-4 mb-4">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 px-3 py-3 border border-black text-base focus:outline-none focus:ring-2 focus:ring-black"
+                />
+                <button className="px-6 py-3 border border-black bg-black text-white text-base font-normal hover:bg-gray-900 transition-colors whitespace-nowrap">
+                  Sign up
+                </button>
+              </div>
+              <p className="text-black text-xs leading-[1.5]">
+                By signing up you agree to our terms and privacy policy
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 md:py-16 bg-white border-t border-black">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-[20px]">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12 mb-12 md:mb-20">
+            <div>
+              <Logo />
+            </div>
+            
+            <div>
+              <h4 className="text-black text-base font-semibold mb-4">Product</h4>
+              <ul className="space-y-2">
+                {["How it works", "Pricing", "Blog", "Features", "Company"].map((item) => (
+                  <li key={item}>
+                    <a href="#" className="text-black text-sm hover:underline">{item}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-black text-base font-semibold mb-4">About us</h4>
+              <ul className="space-y-2">
+                {["Contact", "Careers", "Press", "Support", "Resources"].map((item) => (
+                  <li key={item}>
+                    <a href="#" className="text-black text-sm hover:underline">{item}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-black text-base font-semibold mb-4">Documentation</h4>
+              <ul className="space-y-2">
+                {["API", "Community", "Status", "Guides", "Updates"].map((item) => (
+                  <li key={item}>
+                    <a href="#" className="text-black text-sm hover:underline">{item}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-black text-base font-semibold mb-4">News</h4>
+              <p className="text-black text-base leading-[1.5] mb-6">
+                Get the latest updates on new features and improvements delivered straight to your inbox.
+              </p>
+              <div className="flex gap-4 mb-3">
+                <input
+                  type="email"
+                  placeholder="your@email.com"
+                  className="flex-1 px-3 py-3 border border-black text-base focus:outline-none focus:ring-2 focus:ring-black"
+                />
+                <button className="px-6 py-3 border border-black text-black text-base font-normal hover:bg-black hover:text-white transition-colors">
+                  Join
+                </button>
+              </div>
+              <p className="text-black text-xs leading-[1.5]">
+                We respect your privacy and only send what matters to you.
+              </p>
+            </div>
+          </div>
+
+          <div className="border-t border-black pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+              <div className="flex flex-wrap gap-6 text-sm">
+                <span className="text-black">© 2024 Video Prospect AI Share. All rights reserved.</span>
+                <a href="#" className="text-black underline hover:no-underline">Privacy Policy</a>
+                <a href="#" className="text-black underline hover:no-underline">Terms of Service</a>
+                <a href="#" className="text-black underline hover:no-underline">Cookie Settings</a>
+              </div>
+              
+              <div className="flex gap-3">
+                {[
+                  <svg key="fb" className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M22 12.3038C22 6.74719 17.5229 2.24268 12 2.24268C6.47715 2.24268 2 6.74719 2 12.3038C2 17.3255 5.65684 21.4879 10.4375 22.2427V15.2121H7.89844V12.3038H10.4375V10.0872C10.4375 7.56564 11.9305 6.1728 14.2146 6.1728C15.3088 6.1728 16.4531 6.36931 16.4531 6.36931V8.84529H15.1922C13.95 8.84529 13.5625 9.6209 13.5625 10.4166V12.3038H16.3359L15.8926 15.2121H13.5625V22.2427C18.3432 21.4879 22 17.3257 22 12.3038Z"/>
+                  </svg>,
+                  <svg key="ig" className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M16 3.24268H8C5.23858 3.24268 3 5.48126 3 8.24268V16.2427C3 19.0041 5.23858 21.2427 8 21.2427H16C18.7614 21.2427 21 19.0041 21 16.2427V8.24268C21 5.48126 18.7614 3.24268 16 3.24268ZM19.25 16.2427C19.2445 18.0353 17.7926 19.4872 16 19.4927H8C6.20735 19.4872 4.75549 18.0353 4.75 16.2427V8.24268C4.75549 6.45003 6.20735 4.99817 8 4.99268H16C17.7926 4.99817 19.2445 6.45003 19.25 8.24268V16.2427ZM16.75 8.49268C17.3023 8.49268 17.75 8.04496 17.75 7.49268C17.75 6.9404 17.3023 6.49268 16.75 6.49268C16.1977 6.49268 15.75 6.9404 15.75 7.49268C15.75 8.04496 16.1977 8.49268 16.75 8.49268ZM12 7.74268C9.51472 7.74268 7.5 9.7574 7.5 12.2427C7.5 14.728 9.51472 16.7427 12 16.7427C14.4853 16.7427 16.5 14.728 16.5 12.2427C16.5027 11.0484 16.0294 9.90225 15.1849 9.05776C14.3404 8.21327 13.1943 7.74002 12 7.74268ZM9.25 12.2427C9.25 13.7615 10.4812 14.9927 12 14.9927C13.5188 14.9927 14.75 13.7615 14.75 12.2427C14.75 10.7239 13.5188 9.49268 12 9.49268C10.4812 9.49268 9.25 10.7239 9.25 12.2427Z"/>
+                  </svg>,
+                  <svg key="x" className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.1761 4.24268H19.9362L13.9061 11.0201L21 20.2427H15.4456L11.0951 14.6493L6.11723 20.2427H3.35544L9.80517 12.9935L3 4.24268H8.69545L12.6279 9.3553L17.1761 4.24268ZM16.2073 18.6181H17.7368L7.86441 5.78196H6.2232L16.2073 18.6181Z"/>
+                  </svg>,
+                  <svg key="li" className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M4.5 3.24268C3.67157 3.24268 3 3.91425 3 4.74268V19.7427C3 20.5711 3.67157 21.2427 4.5 21.2427H19.5C20.3284 21.2427 21 20.5711 21 19.7427V4.74268C21 3.91425 20.3284 3.24268 19.5 3.24268H4.5ZM8.52076 7.2454C8.52639 8.20165 7.81061 8.79087 6.96123 8.78665C6.16107 8.78243 5.46357 8.1454 5.46779 7.24681C5.47201 6.40165 6.13998 5.72243 7.00764 5.74212C7.88795 5.76181 8.52639 6.40728 8.52076 7.2454ZM12.2797 10.0044H9.75971H9.7583V18.5643H12.4217V18.3646C12.4217 17.9847 12.4214 17.6047 12.4211 17.2246C12.4203 16.2108 12.4194 15.1959 12.4246 14.1824C12.426 13.9363 12.4372 13.6804 12.5005 13.4455C12.7381 12.568 13.5271 12.0013 14.4074 12.1406C14.9727 12.2291 15.3467 12.5568 15.5042 13.0898C15.6013 13.423 15.6449 13.7816 15.6491 14.129C15.6605 15.1766 15.6589 16.2242 15.6573 17.2719C15.6567 17.6417 15.6561 18.0117 15.6561 18.3815V18.5629H18.328V18.3576C18.328 17.9056 18.3278 17.4537 18.3275 17.0018C18.327 15.8723 18.3264 14.7428 18.3294 13.6129C18.3308 13.1024 18.276 12.599 18.1508 12.1054C17.9638 11.3713 17.5771 10.7638 16.9485 10.3251C16.5027 10.0129 16.0133 9.81178 15.4663 9.78928C15.404 9.78669 15.3412 9.7833 15.2781 9.77989C14.9984 9.76477 14.7141 9.74941 14.4467 9.80334C13.6817 9.95662 13.0096 10.3068 12.5019 10.9241C12.4429 10.9949 12.3852 11.0668 12.2991 11.1741L12.2797 11.1984V10.0044ZM5.68164 18.5671H8.33242V10.01H5.68164V18.5671Z"/>
+                  </svg>,
+                  <svg key="yt" className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21.593 7.20301C21.4791 6.78041 21.2565 6.39501 20.9474 6.08518C20.6382 5.77534 20.2533 5.55187 19.831 5.43701C18.265 5.00701 12 5.00001 12 5.00001C12 5.00001 5.73599 4.99301 4.16899 5.40401C3.74692 5.52415 3.36282 5.75078 3.05356 6.06214C2.7443 6.3735 2.52028 6.75913 2.40299 7.18201C1.98999 8.74801 1.98599 11.996 1.98599 11.996C1.98599 11.996 1.98199 15.26 2.39199 16.81C2.62199 17.667 3.29699 18.344 4.15499 18.575C5.73699 19.005 11.985 19.012 11.985 19.012C11.985 19.012 18.25 19.019 19.816 18.609C20.2385 18.4943 20.6237 18.2714 20.9336 17.9622C21.2436 17.653 21.4674 17.2682 21.583 16.846C21.997 15.281 22 12.034 22 12.034C22 12.034 22.02 8.76901 21.593 7.20301ZM9.99599 15.005L10.001 9.00501L15.208 12.01L9.99599 15.005Z"/>
+                  </svg>
+                ].map((icon, idx) => (
+                  <a key={idx} href="#" className="text-black hover:text-gray-600 transition-colors">
+                    {icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+function Logo() {
+  return (
+    <svg className="h-9" viewBox="0 0 70 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clipPath="url(#clip0)">
+        <path d="M67.2446 17.0815L67.2075 17.1187C67.4677 16.4125 67.988 16.1523 68.434 16.1523C69.0659 16.1523 69.6234 16.6355 69.6234 17.3417C69.6234 17.4904 69.6234 17.6762 69.5491 17.8992C68.2482 21.2444 65.4977 22.9541 62.8216 23.2143C61.5951 25.2957 59.588 26.8196 56.726 26.8196C52.6375 26.8196 50.8163 23.586 50.8163 20.055C50.8163 15.7063 53.5668 10.8744 58.1756 10.8744C59.1791 10.8744 60.034 11.0975 60.7402 11.3948C62.8216 12.1753 64.1597 14.8886 64.1597 17.7877C64.1597 18.7169 64.0853 19.6461 63.8623 20.5382C65.2376 20.055 66.5384 18.9399 67.2446 17.0815ZM59.4765 13.9222V13.8851C58.6588 13.8851 58.1756 14.9629 58.1756 16.2638C58.1756 18.1594 59.2163 19.9063 60.8517 20.5382C61.1119 19.7205 61.2234 18.7913 61.2234 17.7134C61.2234 15.632 60.5915 13.9222 59.4765 13.9222ZM56.7632 24.1063C57.8039 24.1063 58.8446 23.6603 59.6623 22.7311C57.2464 21.6532 55.7225 19.1258 55.7225 16.7098C55.7225 15.8921 55.8712 15.0373 56.0942 14.2939C54.6075 15.5205 53.7526 17.9364 53.7526 20.055C53.7526 22.8054 55.0535 24.1063 56.7632 24.1063Z" fill="black"/>
+        <path d="M51.3902 17.0815L51.353 17.1187C51.6132 16.4125 52.0592 16.1152 52.5052 16.1152C53.1371 16.1152 53.7689 16.6727 53.7689 17.3789C53.7689 17.5647 53.7318 17.7134 53.6574 17.8992C52.2079 21.4302 50.0521 25.5559 46.5955 27.9718L46.5212 28.7152C46.1123 33.1754 43.8451 36.0001 40.9831 36.0001C38.8273 36.0001 37.5636 34.5134 37.5636 32.7665C37.5636 29.6072 40.7972 28.455 43.8079 26.5223C43.8822 25.7417 43.9194 24.8497 43.9565 23.8461C42.4698 25.4815 40.8716 26.1506 39.4592 26.1506C36.6344 26.1506 34.33 23.8461 34.33 20.3152C34.33 14.8886 37.8981 11.3205 41.8751 11.3205H41.9123C44.6256 11.3205 47.5247 12.77 47.5247 15.3718C47.5247 16.2267 47.153 20.8727 46.8557 24.478C48.8627 22.5824 50.5353 19.4975 51.3902 17.0815ZM39.868 23.4745C41.2433 23.4745 43.1017 22.6196 44.2539 18.4196C44.4397 17.4904 44.5512 16.6727 44.5141 15.7063C44.2911 14.7028 43.4362 14.1081 42.2096 14.1081C39.6822 14.1081 37.2663 16.524 37.2663 20.2037C37.2663 22.4338 38.307 23.4745 39.868 23.4745ZM41.2804 33.2869H41.3176C42.0981 33.2869 42.953 32.7665 43.5105 29.4214C41.8751 30.3877 40.3512 31.3541 40.3512 32.5063C40.3512 32.9895 40.7229 33.2869 41.2804 33.2869Z" fill="black"/>
+        <path d="M34.9821 17.0815L34.945 17.1187C35.2051 16.4125 35.7255 16.1523 36.1715 16.1523C36.8034 16.1523 37.3609 16.6355 37.3609 17.3417C37.3609 17.4904 37.3609 17.6762 37.2866 17.8992C35.9857 21.2444 33.2352 22.9541 30.5591 23.2143C29.3326 25.2957 27.3255 26.8196 24.4635 26.8196C20.375 26.8196 18.5538 23.586 18.5538 20.055C18.5538 15.7063 21.3042 10.8744 25.9131 10.8744C26.9166 10.8744 27.7715 11.0975 28.4777 11.3948C30.5591 12.1753 31.8972 14.8886 31.8972 17.7877C31.8972 18.7169 31.8228 19.6461 31.5998 20.5382C32.9751 20.055 34.2759 18.9399 34.9821 17.0815ZM27.214 13.9222V13.8851C26.3963 13.8851 25.9131 14.9629 25.9131 16.2638C25.9131 18.1594 26.9538 19.9063 28.5892 20.5382C28.8494 19.7205 28.9609 18.7913 28.9609 17.7134C28.9609 15.632 28.329 13.9222 27.214 13.9222ZM24.5007 24.1063C25.5414 24.1063 26.5821 23.6603 27.3998 22.7311C24.9839 21.6532 23.46 19.1258 23.46 16.7098C23.46 15.8921 23.6087 15.0373 23.8317 14.2939C22.345 15.5205 21.4901 17.9364 21.4901 20.055C21.4901 22.8054 22.791 24.1063 24.5007 24.1063Z" fill="black"/>
+        <path d="M20.4429 15.9083C19.9225 15.9083 19.4765 16.1685 19.1791 16.8747C18.2128 19.3278 16.2056 23.4907 14.1613 23.4907C12.8741 23.4907 11.878 23.1996 10.8714 22.9054C9.84348 22.605 8.80467 22.3013 7.43378 22.3013C6.95058 22.3013 6.28154 22.3757 5.64967 22.4872C7.55325 19.8914 8.26439 16.7477 8.95347 10.8054C7.65601 10.7228 6.6006 10.4831 5.83132 10.241C5.00967 17.7775 4.07661 20.6511 0.669037 23.4907C0.22301 23.8624 0 24.3828 0 24.9032C0 25.7209 0.706212 26.4271 1.59827 26.4271C1.89562 26.4271 2.23013 26.3156 2.56465 26.1669C4.46027 25.312 5.6125 25.089 7.02492 25.089C7.92309 25.089 8.99783 25.3459 10.1485 25.6208C11.4739 25.9376 12.9 26.2784 14.2729 26.2784C17.2835 26.2784 19.2535 23.3421 21.4464 17.6552C21.558 17.4694 21.5951 17.2464 21.5951 17.0605C21.5951 16.3543 21.0376 15.9083 20.4429 15.9083Z" fill="black"/>
+        <path fillRule="evenodd" clipRule="evenodd" d="M6.01991 8.70287C6.693 8.93784 7.74382 9.2114 9.10625 9.29233L9.32926 9.29222C13.5294 9.29222 16.2799 6.6904 16.2799 3.56821C16.2799 1.56109 14.7188 0 12.5258 0C9.58944 0 7.54516 2.00712 6.50443 5.98419C5.20352 5.27798 4.31147 4.01424 3.86544 2.41598C3.64242 1.63543 3.15923 1.15223 2.49018 1.15223C1.67247 1.15223 1.1521 1.78411 1.1521 2.63899C1.1521 5.16648 3.12206 7.58245 6.02123 8.69752L6.01991 8.70287ZM9.55227 6.57889C10.1098 4.01424 11.0019 2.78767 12.1913 2.78767C12.8232 2.78767 13.232 3.15936 13.232 3.8284C13.232 5.05497 11.9311 6.50455 9.55227 6.57889Z" fill="black"/>
+      </g>
+      <defs>
+        <clipPath id="clip0">
+          <rect width="70" height="36" fill="white"/>
+        </clipPath>
+      </defs>
+    </svg>
+  );
+}
