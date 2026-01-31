@@ -6,7 +6,7 @@ import React from 'react'
 
 const LandingPageNavBar = () => {
   return (
-    <div className='flex w-full justify-between items-center'>
+    <div className='flex w-full justify-between items-center z-50'>
         <div className='text-3xl font-semibold flex items-center gap-x-3'>
             <Menu className='w-8 h-8' />
             <Image

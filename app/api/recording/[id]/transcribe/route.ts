@@ -13,6 +13,8 @@ export async function POST(
 
     const content = JSON.parse(body.content)
 
+    console.log("Content: >>> ", content)
+
     const transcribed = await client.video.update({
         where: {
             userId: id,
@@ -26,23 +28,25 @@ export async function POST(
     })
     if(transcribed){
         console.log('Transcribed, storing in kb')
+        try {
+            
         const options = {
             method: 'POST',
             url: process.env.VOICEFLOW_KNOWLEDGE_BASE_API,
             headers: {
                 accept: 'application/json',
                 'content-type': 'application/json',
-                Authosization: process.env.VOICEFLOW_API_KEY,
+                Authorization: process.env.VOICEFLOW_API_KEY,
 
             },
             data: {
                 data: {
+                    name: content.title || 'Untitled Document',
                     schema: {
                         searchableFields: ['title', 'transcript'],
                         metadataFields: ['title', 'transcript'],
                     },
-                    name: content.title,
-                    itmes: [
+                    items: [
                         {
                             title: content.title,
                             transcript: body.transcript,
@@ -54,10 +58,17 @@ export async function POST(
 
         const updateKB = await axios.request(options)
 
-        if(updateKB.status === 200 || updateKB.status !== 200){
-            console.log(updateKB.data)
-            return NextResponse.json({ status: 200 })
-        }
+        
+        console.log(updateKB.data)
+        return NextResponse.json({ status: 200 })
+    } catch (error: any) {
+        console.error('Voiceflow API Error:', error?.response?.data || error?.message || error);
+        return NextResponse.json(
+            { error: 'Failed to update Knowledge Base', details: error?.response?.data || error?.message || String(error) },
+            { status: 500 }
+        );
+    }
+        
         
     }
 

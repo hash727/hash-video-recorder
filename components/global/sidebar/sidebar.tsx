@@ -68,7 +68,7 @@ const Sidebar = ({ activeWorkSapceId }: Props) => {
     }
 
   const SidebarSection = (
-    <div className='bg-[#111111] flex-none relative p-4 h-full w-[250px] flex flex-col gap-4 items-center overflow-hidden'>
+    <div className='bg-[#111111] flex-none relative p-4 h-full w-[250px] flex flex-col gap-4 items-center overflow-y-scroll'>
         <div className='bg-[#111111] flex p-4 gap-2 justify-center items-center mb-4 absolute top-0 left-0 right-0'>
             <Image 
                 src={`/logo.svg`} 
@@ -216,7 +216,7 @@ const Sidebar = ({ activeWorkSapceId }: Props) => {
             </SheetContent>
         </Sheet>
     </div>
-    <div className='md:block hidden h-full'>{SidebarSection}</div>
+    <div className='lg:md:block hidden h-full'>{SidebarSection}</div>
   </div>
 }
 
