@@ -28,6 +28,8 @@ type Props = {
 
 const VideoPreview = ({ videoId }: Props) => {
 
+    console.log("Video Id: ", videoId);
+
     // for renaming video inline
     const inputRef = useRef<HTMLInputElement | null>(null)
     const [onRename, setOnRename] = useState(false)
@@ -141,10 +143,17 @@ const VideoPreview = ({ videoId }: Props) => {
                 preload='metadata'
                 className='w-full aspect-video opacity-50 rounded-xl'
                 controls
+                crossOrigin="anonymous"
+                // poster={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_STREAM_URL}/${video.source}#t=0.1}`}
             >
-                <source
-                    src={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_STREAM_URL}/${video.source}#1`}
+                <source 
+                    src={`/api/video/${video.source}`}
+                    type='video/webm'
                 />
+                {/* <source
+                    src={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_STREAM_URL}/${video.source}#t=0.1`}
+                    type='video/webm'
+                /> */}
             </video>
             <div className='flex flex-col text-2xl gap-y-4'>
                 <div className='flex gap-x-5 items-center justify-between'>

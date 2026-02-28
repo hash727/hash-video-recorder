@@ -9,8 +9,14 @@ import { FolderPlus, FolderPlusIcon } from 'lucide-react'
 import WorkSpaceForm from '../forms/workspace-form'
 
 const CreateWorkspace = () => {
-    const {data} = useQueryData(['user-WorkSpaces'], getWorkSpaces)
+    const {data, isFetched} = useQueryData(['user-WorkSpaces'], getWorkSpaces)
 
+    // wait for the data to fetch
+    if(!isFetched || !data ){
+        return null // or a skeleton loader
+    }
+
+    // Safe casting after data exist
     const {data: plan} = data as {
         status: number
         data: {
@@ -20,8 +26,9 @@ const CreateWorkspace = () => {
         }
     }
 
-    if(plan.subscription?.plan === 'FREE'){
-        return <></>
+    // Safety check for plan property
+    if(!plan || !plan.subscription || plan.subscription?.plan === 'FREE'){
+        return null
     }
 
     if(plan.subscription?.plan === 'PRO')

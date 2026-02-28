@@ -18,6 +18,53 @@ export type WorkSpaceProps = {
     }
 }
 
+export type WSFoldersProps = {
+    status: number;
+    data: {
+        id: string;
+        name: string;
+        createdAt: Date;
+        videos: {
+            id: string;
+            createdAt: Date;
+            workSpaceId: string | null;
+            title: string | null;
+            description: string | null;
+            source: string;
+            folderId: string | null;
+            userId: string | null;
+            processing: boolean;
+            views: number;
+            summery: string | null;
+        }[];
+    }[]
+}
+
+export type UserWSFoldersProps = {
+    status: number;
+    data: ({
+        _count: {
+            videos: number;
+        };
+    } & {
+        id: string;
+        name: string;
+        createdAt: Date;
+        workSpaceId: string | null;
+    })[];
+}
+
+export type wsinfoProps = {
+    status: number;
+    data: {
+        name: string;
+        _count: {
+            videos: number;
+            folders: number;
+        };
+    };
+}
+
 export type NotificationProps = {
     status: number
     data: {

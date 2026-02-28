@@ -9,3 +9,4 @@ export const MENU_ITEMS = (workSpaceId: string): { title: string, href: string, 
     { title: 'Settings', href: `/dashboard/${workSpaceId}/settings`, icon: <Settings /> },
 
 ]
+

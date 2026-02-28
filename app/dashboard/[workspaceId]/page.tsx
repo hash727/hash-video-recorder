@@ -47,6 +47,7 @@ const WorkSpacePage = async ({ params }: Props) => {
                 workspaceId={workspaceId} 
                 folderId={folderId.data[0].id!} 
                 videosKey='folders-videos'
+                
               />
             ) : 'No Videos'}
           </TabsContent>

@@ -5,25 +5,29 @@ export async function POST(
     req: NextRequest,
     { params }: { params: Promise<{ id: string }>}
 ){
-    const { id } = await params
-    const body = await req.json()
+    try{
 
-    const completeProcessing = await client.video.update({
-        where:{
-            userId: id,
-            source: body.filename,
-        },
-        data: {
-            processing: false,
-        },
-    })
-
-    if(completeProcessing){
+        const { id } = await params
+        const body = await req.json()
         
-        return NextResponse.json({ status: 200 })
-    }
+        const completeProcessing = await client.video.update({
+            where:{
+                userId: id,
+                source: body.filename,
+            },
+            data: {
+                processing: false,
+            },
+        })
+    
+        return NextResponse.json({ status: 200, data: completeProcessing })
+        
+        
+    } catch (error: any){
 
-    return NextResponse.json({ status: 400 })
+        console.error("❌ Complete API Error:", error.message);
+        return NextResponse.json({ status: 500, error: error.message }, { status: 500 })
+    }
 
 
 }

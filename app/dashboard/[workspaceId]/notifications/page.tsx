@@ -32,18 +32,18 @@ const NotificationsPage = (props: Props) => {
         </div>
     }
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col gap-2'>
         {notification.notification.map((n) => (
             <div
                 key={n.id}
-                className='border-2 flex gap-x-3 items-center rounded-lg p-3'
+                className='border-2 flex gap-x-3 items-center rounded-lg p-3 hover:bg-neutral-800/80'
             >
                 <Avatar>
                     <AvatarFallback>
                         <User />
                     </AvatarFallback>
-                    <p>{n.content}</p>
                 </Avatar>
+                    <p>{n.content}</p>
             </div>
         ))}
     </div>

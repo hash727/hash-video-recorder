@@ -79,7 +79,7 @@ export const getWorkspaceFolders = async (workSpaceId: string) => {
 }
 
 
-export const getAllUserVideos = async (workSpaceId: string) => {
+export const getAllUserVideos = async (workSpaceId: string, limit?:number) => {
     try{
         const user = await currentUser();
         if(!user) return { status: 404 }
@@ -101,6 +101,7 @@ export const getAllUserVideos = async (workSpaceId: string) => {
                 },
                 User: {
                     select: {
+                        id: true,
                         firstname: true,
                         lastname: true,
                         image: true,
@@ -110,6 +111,7 @@ export const getAllUserVideos = async (workSpaceId: string) => {
             orderBy: {
                 createdAt: 'asc',
             },
+            take: limit
         })
 
         if(videos && videos.length > 0){
@@ -325,6 +327,31 @@ export const moveVideoLocation = async (
             status: 500,
             data: 'Oops! something went wrong'
         }
+    }
+}
+
+// delete video logic
+export const delUserVideo = async (videoId: string, userId: string) => {
+    try{
+        const user = await currentUser()
+        if(!user) return { status: 404, message: "User Not Logged In !"}
+
+        if(userId !== user.id) return {status: 404, message: "User not authorised for performint this operation."}
+
+        const deleteVideo = await client.video.deleteMany({
+            where: {
+                id: videoId,
+                userId: userId,
+            }
+        });
+
+        if(deleteVideo.count === 0){
+            return { status: 404, message: "Record Not found in DB"}
+        }
+
+        return { status: 200, message: "Video Deleted successfully!"}
+    } catch(error) {
+        return {status: 500, message: "Internal Server Error"}
     }
 }
 
@@ -558,5 +585,130 @@ export const howToPost = async () => {
         }
     } catch (error) {
         return { status: 400 }
+    }
+}
+
+export const getAllFolders = async () => {
+    const user = currentUser();
+    if(!user) return { status: 404 }
+
+    try {
+        const allFolders = await client.folder.findMany()
+        if(allFolders) return { status:200, data: allFolders }
+
+        return{ status: 400, data: []}
+    } catch (error) {
+        return {
+            status: 500,
+            data: []
+        }
+    }
+}
+
+export const getAllFoldersInWs = async (wsId: string) => {
+
+    const user = currentUser();
+
+    if(!user) return { status: 404}
+
+    try {
+        const foldersInWs = await client.folder.findMany({
+            where: {
+                workSpaceId: wsId,
+            },
+            select: {
+                id:true,
+                name:true,
+                createdAt: true,
+                videos: true,
+            }
+        })   
+        
+        if(foldersInWs && foldersInWs.length > 0)
+            return { status: 200, data: foldersInWs }
+
+        return { status: 404, data: []}
+    } catch (error) {
+        return { status: 500, data: []}
+    }
+
+}
+
+export const getWorkSpaceInfo = async (workspaceId: string) => {
+
+    const user = currentUser()
+
+    if(!user) return { status: 404 }
+
+    try {
+        const wsInfo = await client.workSpace.findUnique({
+            where: {
+                id: workspaceId
+            },
+            select: {
+                name: true,
+                _count: {
+                    select: {
+                        folders: true,
+                        videos: true
+                    }
+                }
+            }
+        })
+
+        if(wsInfo)
+            return {
+                status: 200,
+                data: wsInfo
+            }
+        
+        return {
+            status: 400,
+            data: []
+        }
+        
+    } catch (error) {
+        return {
+            status: 500,
+            data: ['Something went wrong']
+        }
+    }
+    
+}
+
+export const getWorkSpaceUser = async ( userId: string ) => {
+    const user = currentUser()
+
+    if(!user) return { status:404 }
+
+    try {
+        const userWS = await client.workSpace.findMany({
+            where: {
+                userId: userId,
+            },
+            select: {
+                id: true,
+                type: true,
+                name: true,
+                createdAt: true,
+                folders:true,
+                members:true,
+            },
+            take:1,
+        })
+        if(userWS){
+            return {
+                status: 200,
+                data: userWS,
+            }
+        }
+
+        return {
+            status: 400,
+        }
+    } catch (error) {
+        return{
+            status: 500,
+        }
     }
 }

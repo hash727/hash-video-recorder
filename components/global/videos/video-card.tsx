@@ -1,5 +1,5 @@
 'use client'
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import Loader from '../loader/loader'
 import CardMenu from './video-car-menu'
 import ChangeVideoLocation from '@/components/forms/change-video-location/changeVideoLocation'
@@ -7,10 +7,13 @@ import CopyLink from './copy-link'
 import Link from 'next/link'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
-import { Dot, Share2, User2 } from 'lucide-react'
+import { Dot, Share2, Trash2, User2 } from 'lucide-react'
+import { usePathname } from 'next/navigation'
+import DeleteVideoModal from './DeleteVideoModal'
 
 type Props = {
     User: {
+        id?: string | null
         firstname: string | null
         lastname: string | null
         image: string | null
@@ -28,6 +31,10 @@ type Props = {
 }
 
 const VideoCard = (props: Props) => {
+    const [isDeleteOpen, setIsDeleteOpen] = useState(false)
+
+    const pathName = usePathname()
+    console.log("PathName: ",pathName.split("/")[1])
     // wire up date 
     const daysAgo = Math.floor(
         (new Date().getTime() - props.createdAt.getTime()) / (24 * 60 * 60 * 1000)
@@ -47,6 +54,9 @@ const VideoCard = (props: Props) => {
     }
     
     // console.log(props)
+
+
+
   return (
     <Loader 
         state={props.processing}
@@ -67,7 +77,7 @@ const VideoCard = (props: Props) => {
                 />
             </div>
             <Link 
-                href={`/dashboard/${props.workspaceId}/video/${props.id}`}
+                href={pathName.split('/')[1] !== 'users' ? `/dashboard/${props.workspaceId}/video/${props.id}`: `/users/${props.User?.id}/${props.workspaceId}/video/${props.id}`}
                 className='hover:bg-[#252525] transition duration-150 flex flex-col justify-between h-full'
             >
                 <video
@@ -78,10 +88,13 @@ const VideoCard = (props: Props) => {
                     preload='metadata'
                     muted
                     playsInline
+                    crossOrigin="anonymous"
                     className='w-full aspect-video opacity-50 z-20'
                 >
                     <source
-                        src={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_STREAM_URL}/${props.source}#t=1`}
+                        // src={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_STREAM_URL}/${props.source}#t=1`}
+                        src={`/api/video/${props.source}`}
+                        type='video/webm'
                     />
                 </video>
                 <div className="px-5 py-3 flex flex-col gap-7-2 z-20">
@@ -119,7 +132,26 @@ const VideoCard = (props: Props) => {
                 </div>
             </Link>
             
-        </div>
+            {/* Delete Button */}
+            <button
+                onClick={(e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    setIsDeleteOpen(true)
+                }}
+                className='absolute bottom-3 right-3 p-2 bg-black/60 hover:bg-red-600 text-white rounded-full opacity-0 group-hover:opacity-100 transition-all duration-200 z-20'
+            >
+                <Trash2 size={18} />
+            </button>
+
+            {/* Delete Modal */}
+            <DeleteVideoModal
+                isOpen={isDeleteOpen}
+                onClose={() => setIsDeleteOpen(false)}
+                videoId={props.id as string}
+                filename={props.source as string}
+                userId={props.User?.id as string}
+            />
 
         {/* <ChangeVideoLocation
             currentFolder={props.Folder?.name}
@@ -128,6 +160,7 @@ const VideoCard = (props: Props) => {
             currentFolderName={props.Folder?.id}
 
         /> */}
+        </div>
     </Loader>
   )
 }

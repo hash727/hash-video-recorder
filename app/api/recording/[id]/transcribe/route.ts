@@ -8,10 +8,10 @@ export async function POST(
 ){
 
     // WIRE UP AI AGENT
-    const body = await req.json()
-    const { id } = await params
+    const body = await req.json();
+    const { id } = await params;
 
-    const content = JSON.parse(body.content)
+    const content = typeof body.content === 'string' ? JSON.parse(body.content) : body.content
 
     console.log("Content: >>> ", content)
 
@@ -21,8 +21,8 @@ export async function POST(
             source: body.filename,
         },
         data: {
-            title: content.title,
-            description: content.summary,
+            title: content.title || 'Untitled',
+            description: content.summary || '',
             summery: body.transcript,
         },
     })

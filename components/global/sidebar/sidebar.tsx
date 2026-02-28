@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { 
     Select, 
     SelectContent, 
@@ -20,7 +20,6 @@ import { Menu, PlusCircle } from 'lucide-react';
 import Search from '../search-user';
 import { MENU_ITEMS } from '@/constants/constant';
 import SidebarItem from './sidebar-items';
-import { count } from 'console';
 import { getNotifications } from '@/actions/user';
 import WorkSpacePlaceholder from './workspace-placeholder';
 import GlobalCard from '../globar-card/globalCard';
@@ -44,29 +43,46 @@ const Sidebar = ({ activeWorkSapceId }: Props) => {
     const pathName = usePathname();
     const dispatch = useDispatch();
 
+      
+
+    // Fetching Data
     const {data, isFetched} = useQueryData(['user-WorkSpaces'], getWorkSpaces)
-
-    const menuItems = MENU_ITEMS(activeWorkSapceId);
-
-    // console.log(data)
-
     const { data:notifications} = useQueryData(["user-notifications"], getNotifications)
 
-    const {data: WorkSpace } = data as WorkSpaceProps
-    const { data: count } = notifications as NotificationProps
+    
+    // console.log(data)
+    
+    
+    const  WorkSpace  = data as WorkSpaceProps
+    const count  = notifications as NotificationProps
+    const menuItems = MENU_ITEMS(activeWorkSapceId);
 
     const onChangeActiveWorkspace = (value: string) => {
         router.push(`/dashboard/${value}`)
     }
 
-    const currentWorkSpace = WorkSpace.WorkSpace.find(
+
+    // Sync Redux Store
+    useEffect(() =>{
+        if(isFetched && WorkSpace?.data?.WorkSpace){
+            dispatch(WORKSPACES(WorkSpace.data.WorkSpace))
+        }
+    }, [isFetched, WorkSpace, dispatch])
+
+    // Loading Gaurd: Prevents crashes 
+    if(!isFetched || !WorkSpace?.data){
+        return (
+            <div className='flex h-full w-[250px] items-center justify-center bg-[#111111]'>
+                <Loader state={true} />
+            </div>
+        )
+    }
+    const currentWorkSpace = WorkSpace.data.WorkSpace.find(
         (s) => s.id === activeWorkSapceId
     )
 
-    if(isFetched && WorkSpace){
-        dispatch(WORKSPACES(WorkSpace.WorkSpace))
-    }
-
+    
+    
   const SidebarSection = (
     <div className='bg-[#111111] flex-none relative p-4 h-full w-[250px] flex flex-col gap-4 items-center overflow-y-scroll'>
         <div className='bg-[#111111] flex p-4 gap-2 justify-center items-center mb-4 absolute top-0 left-0 right-0'>
@@ -91,7 +107,7 @@ const Sidebar = ({ activeWorkSapceId }: Props) => {
                     <SelectGroup >
                         <SelectLabel>Workspaces</SelectLabel>
                         <Separator />
-                        {WorkSpace.WorkSpace.map((workspace) => (
+                        {WorkSpace.data.WorkSpace?.map((workspace) => (
                             <SelectItem 
                                 key={workspace.id}
                                 value={workspace.id}
@@ -99,7 +115,7 @@ const Sidebar = ({ activeWorkSapceId }: Props) => {
                                 {workspace.name}
                             </SelectItem>
                         ))}
-                        {WorkSpace.members.length > 0 && WorkSpace.members.map(
+                        {WorkSpace.data.members?.length > 0 && WorkSpace.data.members.map(
                             (workspace) => workspace.WorkSpace && 
                             <SelectItem
                                 value={workspace.WorkSpace.id}
@@ -111,7 +127,7 @@ const Sidebar = ({ activeWorkSapceId }: Props) => {
                     </SelectGroup>
                 </SelectContent>
             </Select>
-            { currentWorkSpace?.type ==="PUBLIC" && WorkSpace.subscription?.plan === "PRO" && (
+            { currentWorkSpace?.type ==="PUBLIC" && WorkSpace.data.subscription?.plan === "PRO" && (
             <Modal title='Invite to WorkSpace' trigger={
                 <span className='text-sm cursor-pointer flex items-center justify-center bg-neutal-800/70 hover:bg-neutral-800/60 w-full rounded-sm p-[5px] gap-2'>
                     <PlusCircle size={15} className='text-neutral-800/90 fill-neutral-500' />
@@ -133,7 +149,7 @@ const Sidebar = ({ activeWorkSapceId }: Props) => {
                         title={item.title}
                         key={item.title}
                         notifications={
-                            (item.title === 'Notifications' && count._count && count._count.notification) || 0 
+                            (item.title === 'Notifications' && count?.data?._count?.notification) || 0 
                         }
                     />
                 ))}</ul>
@@ -141,16 +157,16 @@ const Sidebar = ({ activeWorkSapceId }: Props) => {
             <Separator className='w-4/5' />
             <p className='w-full text-[#9D9D9D] font-bold mt-4'>WorkSpaces</p>
             {
-                WorkSpace.WorkSpace.length === 1 && WorkSpace.members.length === 0 && 
+                WorkSpace.data.WorkSpace.length === 1 && WorkSpace.data.members.length === 0 && 
                 <div className='w-full mt-[-10px]' >
                         <p className='text-[#3c3c3c] font-medium text-sm'>
-                            {WorkSpace.subscription?.plan === 'FREE' ? 'Upgrade to create WorkSpaces' : 'No WorkSpaces'}
+                            {WorkSpace.data.subscription?.plan === 'FREE' ? 'Upgrade to create WorkSpaces' : 'No WorkSpaces'}
                         </p>
                 </div>
             }
             <nav className='w-full'>
                 <ul className='h-[150px] overflow-auto overflow-x-hidden fade-layer'>
-                    {WorkSpace.WorkSpace.length > 0 && WorkSpace.WorkSpace.map((item) => 
+                    {WorkSpace.data.WorkSpace.length > 0 && WorkSpace.data.WorkSpace.map((item) => 
                         item.type !== 'PERSONAL' && (
                         <SidebarItem 
                             href={`/dashboard/${item.id}`}
@@ -164,7 +180,7 @@ const Sidebar = ({ activeWorkSapceId }: Props) => {
                         />
                     ))}
                     {
-                        WorkSpace.members.length > 0 && WorkSpace.members.map((item) => (
+                        WorkSpace.data.members.length > 0 && WorkSpace.data.members.map((item) => (
                             <SidebarItem 
                                 href={`/dashboard/${item.WorkSpace.id}`}
                                 selected={pathName === `/dashboard/${item.WorkSpace.id}`}
@@ -181,7 +197,7 @@ const Sidebar = ({ activeWorkSapceId }: Props) => {
                 </ul>
             </nav>
             <Separator className='w-4/5' />
-            {WorkSpace.subscription?.plan === 'FREE' && <GlobalCard 
+            {WorkSpace.data.subscription?.plan === 'FREE' && <GlobalCard 
             title='Upgrade to Pro'
             description='Unlock AI features like transcription, AI Summary, and more.'
             footer={
@@ -196,6 +212,8 @@ const Sidebar = ({ activeWorkSapceId }: Props) => {
         </div>
     </div>
   )
+
+ 
 
   return <div className='full'>
     {/* Infor bar */}
@@ -212,11 +230,13 @@ const Sidebar = ({ activeWorkSapceId }: Props) => {
                 </Button>
             </SheetTrigger>
             <SheetContent side={`left`} className='p-0 w-fit h-full'>
-                {SidebarSection}
+                    {SidebarSection}
             </SheetContent>
         </Sheet>
     </div>
-    <div className='lg:md:block hidden h-full'>{SidebarSection}</div>
+    <div className='lg:md:block hidden h-full'>
+                        {SidebarSection}
+    </div>
   </div>
 }
 

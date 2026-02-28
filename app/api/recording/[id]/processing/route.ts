@@ -29,7 +29,12 @@ export async function POST(
                     },
                     select: {
                         id: true,
-                        folders: true,
+                        folders: {
+                            select: {
+                                id: true,
+                            },
+                            take: 1
+                        },
                     },
                     orderBy: {
                         createdAt: 'asc',
@@ -38,8 +43,11 @@ export async function POST(
             },
         })
 
+        const personalWorkSpace = personalworkspaceId?.WorkSpace?.[0];
+        console.log("Personal Work Space :", personalWorkSpace);
+
         // 1. Safety check: Ensure workspace exists before updating
-        if (!personalworkspaceId?.WorkSpace?.[0]?.id) {
+        if (!personalWorkSpace) {
             return NextResponse.json({ status: 404, message: "Workspace not found" }, { status: 404 });
         }
 
@@ -47,7 +55,7 @@ export async function POST(
 
         const startProcessingVideo = await client.workSpace.update({
             where: {
-                id: personalworkspaceId?.WorkSpace[0].id,
+                id: personalWorkSpace.id,
             },
             data: {
                 videos: {
@@ -60,7 +68,7 @@ export async function POST(
                         update: { source: body.filename},
                         create: {
                             source: body.filename,
-                            folderId: personalworkspaceId?.WorkSpace[0].folders[0].id,
+                            folderId: personalWorkSpace.folders?.[0]?.id || null,
                             userId: id,
                         }
                     }
@@ -87,7 +95,7 @@ export async function POST(
         }
         return NextResponse.json({ status: 400 })
     } catch (error) {
-        console.log("Error in processing video", error)
+        console.log(" 🔴 Error in processing video", error)
         if(error instanceof Prisma.PrismaClientKnownRequestError ){
             if(error.code === 'P2002'){
                 return NextResponse.json({message: 'This Video filename already exists !'})
